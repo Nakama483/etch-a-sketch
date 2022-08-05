@@ -13,6 +13,7 @@ function resizePrompt(){
 } 
 
 function changeSquareSize(size){
+    squares = document.querySelectorAll('#grid > div');
     let squareLength = (960/size) - 2;
     squares.forEach((squareDiv) => 
         {squareDiv.style.height = `${squareLength}px`
@@ -20,6 +21,7 @@ function changeSquareSize(size){
     squares.forEach((squareDiv) => 
         {squareDiv.style.width = `${squareLength}px`   
     });
+    
 }
 
 let squareDiv;
@@ -37,24 +39,33 @@ function removeAllChildNodes(parent){
     }
 }
 
-// Create default grid
+//Create default grid
 for (let i = 0; i < 256; i++){
     squareDiv = document.createElement('div');
     grid.appendChild(squareDiv);
 }
 
-resizeButton.addEventListener('click', resizePrompt)
-resizeButton.addEventListener('click', () => removeAllChildNodes(grid))
-resizeButton.addEventListener('click', () => createGrid(gridDimensions))
-resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions))
+let squares = document.querySelectorAll('#grid > div');
 
-const squares = document.querySelectorAll('#grid > div');
+resizeButton.addEventListener('click', resizePrompt);
+resizeButton.addEventListener('click', () => removeAllChildNodes(grid));
+resizeButton.addEventListener('click', () => createGrid(gridDimensions));
+resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions));
+resizeButton.addEventListener('click', () => selectNewSquares());
 
 function changeBackgroundColor(element){
     return element.style.backgroundColor = 'blue';
 }
+function selectNewSquares(){
+    squares.forEach((squareDiv) => 
+        {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
+    });
+}
+
 squares.forEach((squareDiv) => 
     {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
 });
+
+
 
 
