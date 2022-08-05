@@ -12,5 +12,10 @@ for (let i = 0; i < 256; i++){
 
 const squares = document.querySelectorAll('#grid > div');
 
-console.log(squares)
-squares.forEach((square) => {square.addEventListener('mouseover', () => {square.setAttribute('style', 'background-color: blue')})})
+function changeBackgroundColor(element){
+    return element.setAttribute('style', 'background-color: blue');
+}
+
+squares.forEach((square) => 
+    {square.addEventListener('mouseover', () => changeBackgroundColor(square))
+});
