@@ -12,7 +12,7 @@ function resizePrompt(){
     gridDimensions = +(window.prompt("Set size: 1-100"));  
 } 
 
-function changeGridSize(size){
+function changeSquareSize(size){
     let squareLength = (960/size) - 2;
     squares.forEach((squareDiv) => 
         {squareDiv.style.height = `${squareLength}px`
@@ -22,24 +22,31 @@ function changeGridSize(size){
     });
 }
 
-function createGrid(length){
+let squareDiv;
 
+function createGrid(length){
     for (let i = 0; i < (length ** 2); i++){
-        let squareDiv = document.createElement('div');
+        squareDiv = document.createElement('div');
         grid.appendChild(squareDiv);
     }    
 }
 
-resizeButton.addEventListener('click', resizePrompt)
-resizeButton.addEventListener('click', () => changeGridSize(gridDimensions))
-resizeButton.addEventListener('click', () => createGrid(gridDimensions))
-resizeButton.addEventListener('click', () => grid.removeChild(squareDiv))
+function removeAllChildNodes(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
-// Create a grid of squares 
+// Create default grid
 for (let i = 0; i < 256; i++){
-    let squareDiv = document.createElement('div');
+    squareDiv = document.createElement('div');
     grid.appendChild(squareDiv);
 }
+
+resizeButton.addEventListener('click', resizePrompt)
+resizeButton.addEventListener('click', () => removeAllChildNodes(grid))
+resizeButton.addEventListener('click', () => createGrid(gridDimensions))
+resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions))
 
 const squares = document.querySelectorAll('#grid > div');
 
@@ -49,7 +56,5 @@ function changeBackgroundColor(element){
 squares.forEach((squareDiv) => 
     {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
 });
-
-
 
 
