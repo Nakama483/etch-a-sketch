@@ -1,3 +1,4 @@
+
 function changeGridSize(size){
     let squareLength = (960/size) - 2;
     squares.forEach((squareDiv) => 
@@ -26,9 +27,18 @@ function changeBackgroundColor(element){
     return element.style.backgroundColor = 'blue';
 }
 squares.forEach((squareDiv) => 
-    {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv))
+    {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
 });
 
-const resizeButton = document.getElementById('resizeButton')
+const resizeButton = document.getElementById('resizeButton');
 
-changeGridSize(30)
+let gridDimensions;
+
+function resizePrompt(){
+    gridDimensions = +(window.prompt("Set size: 1-100"));  
+} 
+
+resizeButton.addEventListener('click', resizePrompt)
+
+
+console.log(gridDimensions)
