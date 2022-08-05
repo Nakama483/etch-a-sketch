@@ -1,3 +1,9 @@
+const body = document.body;
+const grid = document.createElement('div');
+
+body.appendChild(grid);
+grid.setAttribute('id', 'grid');
+
 const resizeButton = document.getElementById('resizeButton');
 
 let gridDimensions;
@@ -15,14 +21,19 @@ function changeGridSize(size){
         {squareDiv.style.width = `${squareLength}px`   
     });
 }
+
+function createGrid(length){
+
+    for (let i = 0; i < (length ** 2); i++){
+        let squareDiv = document.createElement('div');
+        grid.appendChild(squareDiv);
+    }    
+}
+
 resizeButton.addEventListener('click', resizePrompt)
 resizeButton.addEventListener('click', () => changeGridSize(gridDimensions))
-
-const body = document.body;
-const grid = document.createElement('div');
-
-body.appendChild(grid);
-grid.setAttribute('id', 'grid');
+resizeButton.addEventListener('click', () => createGrid(gridDimensions))
+resizeButton.addEventListener('click', () => grid.removeChild(squareDiv))
 
 // Create a grid of squares 
 for (let i = 0; i < 256; i++){
