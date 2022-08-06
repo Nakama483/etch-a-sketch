@@ -20,6 +20,25 @@ body {
     flex-grow: 1;    
 }
 
-#resizeButton {
+button{
+    display: flex;
+    align-items: center;
+    height: 30px;
     margin: 20px;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 3px 3px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Courier New, monospace;
 }
+
+button:hover{
+    background-color: rgb(235, 252, 2);
+}
+
+button:active {
+    background-color: rgb(235, 252, 2);
+    box-shadow: 0 5px #667;
+    transform: translateY(4px);
+  }

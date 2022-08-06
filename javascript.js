@@ -1,6 +1,6 @@
 const body = document.body;
 const grid = document.createElement('div');
-const resizeButton = document.getElementById('resizeButton');
+const resizeButton = document.getElementById('resizePrompt');
 
 body.appendChild(grid);
 grid.setAttribute('id', 'grid');
@@ -16,9 +16,10 @@ function randomRGB() {
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
+// Limit grid size to 100 due to performance issues
 function buttonPrompt(){
     gridDimensions = +(window.prompt("Set side length 1 - 100"));  
-    
+    return (gridDimensions <= 100 ? gridDimensions : gridDimensions = 100)
 } 
 
 function changeSquareSize(size){
@@ -55,7 +56,7 @@ function selectNewSquares(){
     });
 }
 
-//Create default 16x16 grid
+// Create default 16x16 grid
 for (let i = 0; i < 256; i++){
     squareDiv = document.createElement('div');
     grid.appendChild(squareDiv);
@@ -66,7 +67,6 @@ let squares = document.querySelectorAll('#grid > div');
 squares.forEach((squareDiv) => 
     {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
 });
-
 
 resizeButton.addEventListener('click', buttonPrompt);
 resizeButton.addEventListener('click', () => removeAllChildNodes(grid));
