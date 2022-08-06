@@ -12,8 +12,7 @@ let initialColor = randomRGB();
 function randomRGB() {
     r = Math.floor(Math.random() * 256);
     g = Math.floor(Math.random() * 256);
-    b = Math.floor(Math.random() * 256);
-    return "rgb(" + r + "," + g + "," + b + ")";
+    b = Math.floor(Math.random() * 256); 
   }
 
 // Limit grid size to 100 due to performance issues
@@ -54,10 +53,9 @@ function removeAllChildNodes(parent){
     }
 }
 
+// Subtract 2 from RGB values to create fade to black effect on hover
 function changeSquareColor(element){
-    let initialColorArray = initialColor.split('')
-    //console.log(initialColorArray)
-    return element.style.backgroundColor = initialColor;
+    return element.style.backgroundColor = "rgb(" + (r-=2) + "," + (g-=2) + "," + (b-=2) + ")";
 }
 
 function selectNewSquares(){
@@ -85,8 +83,5 @@ resizeButton.addEventListener('click', () => createGrid(gridDimensions));
 resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions));
 resizeButton.addEventListener('click', () => selectNewSquares());
 
-
-
-console.log(r)
 
 
