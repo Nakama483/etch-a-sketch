@@ -21,7 +21,20 @@ body {
     background-color: white;    
 }
 
-button{
+h1 {
+    font: italic small-caps bold Georgia, serif;
+    font-size: 75px;
+    font-weight: 900;
+    margin: 0;
+}
+
+p {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-decoration:underline
+}
+
+button {
     display: flex;
     align-items: center;
     height: 30px;
@@ -32,10 +45,9 @@ button{
     cursor: pointer;
     font-size: 16px;
     font-family: Courier New, monospace;
-
 }
 
-button:hover{
+button:hover{ 
     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
     animation: slidebg 4s linear infinite;
  }
@@ -43,10 +55,10 @@ button:hover{
 button:active {
     box-shadow: 0 5px #667;
     transform: translateY(4px);
-  }
+}
 
-  @keyframes slidebg {
+@keyframes slidebg {
     to {
       background-position:20vw;
     }
-  }
+}
