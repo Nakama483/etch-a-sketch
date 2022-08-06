@@ -19,7 +19,15 @@ function randomRGB() {
 // Limit grid size to 100 due to performance issues
 function buttonPrompt(){
     gridDimensions = +(window.prompt("Set side length 1 - 100"));  
-    return (gridDimensions <= 100 ? gridDimensions : gridDimensions = 100)
+    if (gridDimensions <= 0){
+        return gridDimensions = 16;
+    }else if (gridDimensions <= 100) {
+        return gridDimensions;
+    } else if (gridDimensions > 100) {
+        return gridDimensions = 100;
+    }else {
+        return gridDimensions = 16;
+    }
 } 
 
 function changeSquareSize(size){

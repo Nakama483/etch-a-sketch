@@ -32,15 +32,21 @@ button{
     cursor: pointer;
     font-size: 16px;
     font-family: Courier New, monospace;
+
 }
 
 button:hover{
     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
-    animation: slidebg 5s linear infinite;
+    animation: slidebg 4s linear infinite;
  }
 
 button:active {
-    background-color: rgb(235, 252, 2);
     box-shadow: 0 5px #667;
     transform: translateY(4px);
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position:20vw;
+    }
   }
