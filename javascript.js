@@ -5,14 +5,14 @@ const resizeButton = document.getElementById('resizePrompt');
 body.appendChild(grid);
 grid.setAttribute('id', 'grid');
 
-let gridDimensions;
 let squareDiv;
 let initialColor = randomRGB();
 
+
 function randomRGB() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
+    r = Math.floor(Math.random() * 256);
+    g = Math.floor(Math.random() * 256);
+    b = Math.floor(Math.random() * 256);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
@@ -54,13 +54,15 @@ function removeAllChildNodes(parent){
     }
 }
 
-function changeBackgroundColor(element){
+function changeSquareColor(element){
+    let initialColorArray = initialColor.split('')
+    //console.log(initialColorArray)
     return element.style.backgroundColor = initialColor;
 }
 
 function selectNewSquares(){
     squares.forEach((squareDiv) => 
-        {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
+        {squareDiv.addEventListener('mouseover', () => changeSquareColor(squareDiv));
     });
 }
 
@@ -73,7 +75,7 @@ for (let i = 0; i < 256; i++){
 let squares = document.querySelectorAll('#grid > div');
 
 squares.forEach((squareDiv) => 
-    {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
+    {squareDiv.addEventListener('mouseover', () => changeSquareColor(squareDiv));
 });
 
 resizeButton.addEventListener('click', buttonPrompt);
@@ -85,6 +87,6 @@ resizeButton.addEventListener('click', () => selectNewSquares());
 
 
 
-
+console.log(r)
 
 
