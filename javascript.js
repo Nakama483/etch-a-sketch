@@ -1,15 +1,15 @@
 const body = document.body;
 const grid = document.createElement('div');
+const resizeButton = document.getElementById('resizeButton');
 
 body.appendChild(grid);
 grid.setAttribute('id', 'grid');
 
-const resizeButton = document.getElementById('resizeButton');
-
 let gridDimensions;
+let squareDiv;
 
 function resizePrompt(){
-    gridDimensions = +(window.prompt("Set size: 1-100"));  
+    gridDimensions = +(window.prompt("Set side length 1 - 100"));  
 } 
 
 function changeSquareSize(size){
@@ -21,10 +21,7 @@ function changeSquareSize(size){
     squares.forEach((squareDiv) => 
         {squareDiv.style.width = `${squareLength}px`   
     });
-    
 }
-
-let squareDiv;
 
 function createGrid(length){
     for (let i = 0; i < (length ** 2); i++){
@@ -39,7 +36,17 @@ function removeAllChildNodes(parent){
     }
 }
 
-//Create default grid
+function changeBackgroundColor(element){
+    return element.style.backgroundColor = 'blue';
+}
+
+function selectNewSquares(){
+    squares.forEach((squareDiv) => 
+        {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
+    });
+}
+
+//Create default 16x16 grid
 for (let i = 0; i < 256; i++){
     squareDiv = document.createElement('div');
     grid.appendChild(squareDiv);
@@ -47,24 +54,16 @@ for (let i = 0; i < 256; i++){
 
 let squares = document.querySelectorAll('#grid > div');
 
+squares.forEach((squareDiv) => 
+    {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
+});
+
+
 resizeButton.addEventListener('click', resizePrompt);
 resizeButton.addEventListener('click', () => removeAllChildNodes(grid));
 resizeButton.addEventListener('click', () => createGrid(gridDimensions));
 resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions));
 resizeButton.addEventListener('click', () => selectNewSquares());
-
-function changeBackgroundColor(element){
-    return element.style.backgroundColor = 'blue';
-}
-function selectNewSquares(){
-    squares.forEach((squareDiv) => 
-        {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
-    });
-}
-
-squares.forEach((squareDiv) => 
-    {squareDiv.addEventListener('mouseover', () => changeBackgroundColor(squareDiv));
-});
 
 
 
