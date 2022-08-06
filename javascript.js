@@ -8,6 +8,15 @@ grid.setAttribute('id', 'grid');
 let gridDimensions;
 let squareDiv;
 
+function randomRGB() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
+const initialColor = randomRGB();
+
 function resizePrompt(){
     gridDimensions = +(window.prompt("Set side length 1 - 100"));  
 } 
@@ -37,7 +46,7 @@ function removeAllChildNodes(parent){
 }
 
 function changeBackgroundColor(element){
-    return element.style.backgroundColor = 'blue';
+    return element.style.backgroundColor = initialColor;
 }
 
 function selectNewSquares(){
@@ -61,9 +70,13 @@ squares.forEach((squareDiv) =>
 
 resizeButton.addEventListener('click', resizePrompt);
 resizeButton.addEventListener('click', () => removeAllChildNodes(grid));
+resizeButton.addEventListener('click', () => randomRGB());
 resizeButton.addEventListener('click', () => createGrid(gridDimensions));
 resizeButton.addEventListener('click', () => changeSquareSize(gridDimensions));
 resizeButton.addEventListener('click', () => selectNewSquares());
+
+
+
 
 
 
